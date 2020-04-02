@@ -53,11 +53,14 @@ body {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
+  /* backface-visibility: hidden; */
+  margin-bottom: 60px;
 }
 
 .heading-primary-main {
@@ -68,7 +71,6 @@ body {
   animation-name: moveInLeft;
   animation-duration: 1s;
   animation-timing-function: ease-out;
-
   /*
     Kind of animations
     animation-delay: 3s;
@@ -110,4 +112,79 @@ body {
     opacity: 1;
     transform: translatex(0);
   }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+
+/*
+  We want that the link visited looks like exactly like the link state,
+  because of that we put it togetther
+*/
+
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none; /*remove the underscore from link*/
+  padding: 15px 40px; /*It is setting top right bottom left padding*/
+  display: inline-block; /*It will be works like a BLOCK elemente...We should always do this if we want some paddings, height or width*/
+  border-radius: 100px; /*If I put a higher number here the border is still the same*/
+  transition: all 0.2s; /*all props will be available to use animations and the .2s is the during time*/
+  position: relative; /*Now it should be hidden behind the button*/
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /*eixo X, Y, Blurry, color */
+}
+/* when We click on button */
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
+}
+
+/*
+  It will looks like a button behind the button when
+  we houver it
+*/
+.btn::after {
+  content: ""; /*it is required ever*/
+  display: inline-block; /*inline block because the button that we have is already inline-block*/
+  height: 100%; /*we want to look the same original button*/
+  width: 100%; /*we want to look the same original button*/
+  border-radius: 100px; /* It could be a higher value */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; /*ensure that will be behind the button*/
+  transition: all .4s;
+}
+
+.btn-white::after {
+  background-color: #fff
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6); /*that increases the element*/
+  opacity: 0; /*sets something invisible basically*/
+}
+
+.btn-animated {
+  animation: moveInBottom .5s ease-out .75s;
+  animation-fill-mode: backwards;
 }
