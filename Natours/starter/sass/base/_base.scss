@@ -1,0 +1,23 @@
+/* Universal selector will each and every
+element on the page and apply this declaration */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+
+  /* box-sizing is not inherited but using this code below it is */
+  box-sizing: inherit;
+}
+
+html {
+  /* root size is now 10px is more easy to change all others props to REM unit */
+  /* font-size: 10px; */
+
+  /* To ensure that is 10px of default value of browser 10/16 = 0.625 */
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+}

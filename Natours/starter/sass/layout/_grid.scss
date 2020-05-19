@@ -1,0 +1,32 @@
+/*
+  Por padrão usaremos 1140px como width para o row selector
+  Mas como definimos que não usaremos px para length usaremos a unit REM
+  Logo, vale lembrar que definimos que o base é 10px 1140/10 = 114rem
+*/
+.row {
+  max-width: $grid-width;
+  background-color: #eee;
+  margin: 0 auto; // trick para centralizar um block element dentro de outro block element
+
+  &:not(:last-child) {
+    margin-bottom: $gutter-vertical;
+  }
+
+  @include clearfix;
+
+  .col-1-of-2 {
+    width: calc((100% - #{$gutter-horizontal}) / 2);
+    background-color: orangered;
+    float: left;
+
+    &:not(:last-child) {
+      margin-right: $gutter-horizontal;
+    }
+  }
+
+  .col-1-of-3 {
+
+  }
+
+
+}

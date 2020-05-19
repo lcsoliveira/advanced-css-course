@@ -1,0 +1,64 @@
+.btn {
+  /*
+  We want that the link visited looks like exactly like the link state,
+  because of that we put it togetther
+*/
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none; /*remove the underscore from link*/
+    padding: 1.5rem 4rem; /*It is setting top right bottom left padding*/
+    display: inline-block; /*It will be works like a BLOCK elemente...We should always do this if we want some paddings, height or width*/
+    border-radius: 10rem; /*If I put a higher number here the border is still the same*/
+    transition: all 0.2s; /*all props will be available to use animations and the .2s is the during time*/
+    position: relative; /*Now it should be hidden behind the button*/
+    font-size: 1.6rem;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2); /*eixo X, Y, Blurry, color */
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6); /*that increases the element*/
+      opacity: 0; /*sets something invisible basically*/
+    }
+  }
+
+  /* when We click on button */
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 .5rem 1rem rgba($color-black, 0.2);
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+
+    &::after {
+      background-color:$color-white;
+    }
+  }
+
+  /*
+    It will looks like a button behind the button when
+    we houver it
+  */
+  &::after {
+    content: ""; /*it is required ever*/
+    display: inline-block; /*inline block because the button that we have is already inline-block*/
+    height: 100%; /*we want to look the same original button*/
+    width: 100%; /*we want to look the same original button*/
+    border-radius: 10rem; /* It could be a higher value */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; /*ensure that will be behind the button*/
+    transition: all .4s;
+  }
+
+  &--animated {
+    animation: moveInBottom .5s ease-out .75s;
+    animation-fill-mode: backwards;
+  }
+}
